@@ -1,0 +1,7 @@
+token=
+super_duper_secure_password
+aws_secret_access_key
+creds=
+iloveyou
+Password1!
+
