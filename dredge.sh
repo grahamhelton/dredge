@@ -44,7 +44,7 @@ $GREEN          Dredging up secrets from the depths of the file system...$NOCOLO
 "
 
 dependency_check(){
-if ! which asdfasdf grep find xargs sed mkdir cut &>/dev/null; then
+if ! which grep find xargs sed mkdir cut &>/dev/null; then
     echo $TICK_ERROR "Error: System does not have required utilities..."
     echo $TICK_ERROR "Ensure the following utilities are on the system and in your path:"
     echo $TICK_ERROR "grep, find, xargs, sed, mkdir, cut"
