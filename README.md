@@ -33,7 +33,7 @@ In search mode, dredge will start searching for files at the location provided w
 ![image](https://github.com/grahamhelton/dredge/assets/19278569/bd98d27e-489f-4493-ae6f-c1e8c475c55b)
 
 ## Logs
-Logs produced by dredge are stored in `./logs/`. The goal of the log files are to make it easy to **manually** parse for actual sensitive information. In my experience 99% of the information output by tooling that searches for secrets is noise, but there is no way to know unless you manually look at the files. This is espeically true when casting a wide net by searching for a string such as `aws_access_key_id`. 
+Logs produced by dredge are stored in `./logs/`. The goal of the log files are to make it easy to **manually** parse for actual sensitive information. In my experience 99% of the information output by tooling that searches for secrets is noise, but there is no way to know unless you manually look at the files. This is especially true when casting a wide net by searching for a string such as `aws_access_key_id`. 
 
 Dredge produces a log file containing two lines per match. The first line in the log file is the actual string that was matched from the wordlist. The second line is the "context" line. From experience, the "context" line is necessary because many files contain information where the string being searched for is on one line, and the actual senstive information is on the following line. Utilizing a "context" line below the actual matched content makes for identifying this much easier. It is important to understand that in order to make the log files easily readable, **dredge will truncate a line after 400 bytes**. Please follow up on all truncated lines manually. This is necessary to make log files easily readable.
 
