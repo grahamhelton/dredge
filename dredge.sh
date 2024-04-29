@@ -111,14 +111,18 @@ find_kubeconfig(){
     echo  $TICK"$(date +%H:%M) - Starting search for kubeconfig files. Any files located will be copied to $GREEN$KUBE_LOCATION "$NOCOLOR
 	# Behold, the worlds second most cursed search pipeline
 	k8s=$(find $location -type f -not -path "*/dredge/*" -not -name "*.html" -not -name "*.png" -not -name "*.jpg" -not -name "*.js" -not -name "*.css" -not -type d -print0 2>/dev/null| xargs -0 grep -Iil "kind: config$" --color=never 2>/dev/null)
-	while IFS= read -r line
-	do
-            	echo $TICK$RED"Kubeconfig Found at: $GREEN$line" $NOCOLOR
-		k8s_fixed=$(echo "line: \"$line\"")
-            	kube_filename=$(echo "$line" | awk -F'/' '{print $NF}')
-            	cp "$line" $KUBE_LOCATION
-            	sed -i "1s|^|# DREDGE: kubeconfig found in '$line'\n|" $KUBE_LOCATION/"$kube_filename"
-	done <<< "$k8s"
+	if [[ -z $k8s ]];then
+		echo $TICK"No kubeconfig files found in $location"
+	else
+	    while IFS= read -r line
+	        do
+            	    echo $TICK$RED"Kubeconfig Found at: $GREEN$line" $NOCOLOR
+		    k8s_fixed=$(echo "line: \"$line\"")
+            	    kube_filename=$(echo "$line" | awk -F'/' '{print $NF}')
+            	    cp "$line" $KUBE_LOCATION
+            	    sed -i "1s|^|# DREDGE: kubeconfig found in '$line'\n|" $KUBE_LOCATION/"$kube_filename"
+	    done <<< "$k8s"
+	fi
 }
 
 
