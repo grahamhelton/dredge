@@ -9,7 +9,8 @@ TICK="[$GREEN+$NOCOLOR] "
 TICK_INPUT="$NOCOLOR[$YELLOW!$NOCOLOR] "
 TICK_MOVE="[$GREEN~>$NOCOLOR]"
 TICK_ERROR="$NOCOLOR[$RED!$NOCOLOR] "
-WORDLIST=$(cat net.txt)
+SCRIPT_DIR="$(dirname "$0")"
+WORDLIST=$(cat "${SCRIPT_DIR}/net.txt")
 
 # ASCII art modified from: https://ascii.co.uk/art/fishing 
 # and https://www.asciiart.eu/vehicles/boats
